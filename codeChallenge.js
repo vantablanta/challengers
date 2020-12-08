@@ -205,9 +205,42 @@ return collection;
 };
 console.log(updateCollection(5412, artist, "Drille"))*/
 
+var Mammal = function (name) { 
+       this.name = name; 
+};
 
+    Mammal.prototype.get_name = function () {
+        return this.name; 
+    };
 
+    Mammal.prototype.says = function () {
+                return this.saying || ''; 
+    };
+                
+var myMammal = new Mammal('Herb the Mammal'); 
 
+var name = myMammal.get_name();
+
+var Cat = function (name) {
+        this.name = name;    
+        this.saying = 'meow';     
+};
+
+Cat.prototype = new Mammal();
+
+Cat.prototype.purr = function (n) { 
+       var i, s = '';    
+        for (i = 0; i < n; i += 1) {
+            if (s) { s += '-';       
+            }        
+        s += 'r';    
+        } 
+return s; 
+}; 
+
+Cat.prototype.get_name = function () { 
+       return this.says() + ' ' + this.name +  ' ' + this.says(); 
+    };
 var myArr = [];
 var i = 1;
 while (i < 6) {
@@ -215,3 +248,33 @@ while (i < 6) {
     i ++
 };
 console.log(myArr);
+
+
+var mybody= {
+    outer: {
+        legs: 2,
+        hands: 2,
+        eyes:2,
+        height:function(){
+        let z= (this.legs**2) + (this.hands**2)
+         return z;
+        }
+    },
+    inner:function (x, y){
+        return x + "and" + y + " are inner orgarns"
+        }
+    
+    
+}
+
+var cat= Object.assign(mybody);
+console.log (cat.inner("heart", "lungs"))
+
+let cow = Object.create(mybody, 
+                            {"leg": {value:4},
+                            "hands":{value:0},
+                            "horns":{value:2},
+                            "eyes": {value:2}
+                            })
+console.log(cow.inner("guts", "heart"))
+console.log(cow.outer.height())
